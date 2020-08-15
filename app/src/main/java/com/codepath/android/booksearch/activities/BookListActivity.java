@@ -103,10 +103,14 @@ public class BookListActivity extends AppCompatActivity {
                             abooks.add(book); // add book through the adapter
                         }
                         bookAdapter.notifyDataSetChanged();
+                        ProgressBar pb = findViewById(R.id.pbLoading);
+                        pb.setVisibility(ProgressBar.INVISIBLE);
                     }
                 } catch (JSONException e) {
                     // Invalid JSON format, show appropriate error.
                     e.printStackTrace();
+                    ProgressBar pb = findViewById(R.id.pbLoading);
+                    pb.setVisibility(ProgressBar.INVISIBLE);
                 }
             }
 
@@ -140,7 +144,6 @@ public class BookListActivity extends AppCompatActivity {
                 // workaround to avoid issues with some emulators and keyboard devices firing twice if a keyboard enter is used
                 // see https://code.google.com/p/android/issues/detail?id=24599
                 searchView.clearFocus();
-                pb.setVisibility(ProgressBar.INVISIBLE);
                 return true;
             }
 
